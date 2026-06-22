@@ -275,36 +275,35 @@ class Game(commands.Cog):
 
             return
 
-# Deduct Entry Fee
+        # Deduct Entry Fee
 
-for player_id in session.players:
+        for player_id in session.players:
 
-    await remove_coins(
-        player_id,
-        ENTRY_COST
-    )
+            await remove_coins(
+                player_id,
+                ENTRY_COST
+            )
 
-await ctx.send(
-    f"💰 {ENTRY_COST} Coins Deducted From All Players."
-)
+        await ctx.send(
+            f"💰 {ENTRY_COST} Coins Deducted From All Players."
+        )
 
-# Lock Voice Channel
+        # Lock Voice Channel
 
-everyone_role = ctx.guild.default_role
+        everyone_role = ctx.guild.default_role
 
-await vc.set_permissions(
-    everyone_role,
-    connect=False
-)
+        await vc.set_permissions(
+            everyone_role,
+            connect=False
+        )
 
-await ctx.send(
-    "🔒 Voice Channel Locked."
-)
+        await ctx.send(
+            "🔒 Voice Channel Locked."
+        )
 
-await ctx.send(
-    "📩 Roles Sent Successfully!"
-)
-
-
+        await ctx.send(
+            "📩 Roles Sent Successfully!"
+        )
+        
 async def setup(bot):
     await bot.add_cog(Game(bot))
