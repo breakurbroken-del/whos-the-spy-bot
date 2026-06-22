@@ -1,0 +1,86 @@
+{
+  "Fruits": [
+    "Apple","Banana","Mango","Orange","Strawberry","Blueberry",
+    "Pineapple","Watermelon","Papaya","Guava","Litchi","Pear"
+  ],
+
+  "Animals": [
+    "Dog","Wolf","Fox","Tiger","Lion","Bear",
+    "Hyena","Leopard","Cat","Rabbit","Deer","Elephant"
+  ],
+
+  "Food": [
+    "Pizza","Burger","Pasta","Sandwich","Noodles","Biryani",
+    "Taco","Hotdog","Fried Rice","Cake","Donut","Ice Cream"
+  ],
+
+  "Vehicles": [
+    "Car","Truck","Bus","Van","Bike","Scooter",
+    "Train","Metro","Helicopter","Airplane","Boat","Ship"
+  ],
+
+  "Technology": [
+    "Laptop","Computer","Tablet","Phone","Keyboard","Mouse",
+    "Monitor","Printer","Router","Microphone","Camera","Drone"
+  ],
+
+  "Sports": [
+    "Cricket","Football","Basketball","Tennis","Hockey","Volleyball",
+    "Badminton","Kabaddi","Baseball","Golf","Chess","Wrestling"
+  ],
+
+  "Countries": [
+    "India","Pakistan","Bangladesh","Nepal","China","Japan",
+    "USA","Canada","Brazil","Australia","Germany","France"
+  ],
+
+  "Cities": [
+    "Kolkata","Delhi","Mumbai","Chennai","Bangalore","Hyderabad",
+    "London","Tokyo","Dubai","Paris","New York","Sydney"
+  ],
+
+  "Minecraft": [
+    "Creeper","Zombie","Skeleton","Enderman","Villager","Iron Golem",
+    "Diamond","Emerald","Netherite","Beacon","Elytra","Totem"
+  ],
+
+  "Roblox": [
+    "Brookhaven","Blox Fruits","Doors","Arsenal","BedWars","Adopt Me",
+    "Piggy","Jailbreak","Tower Defense","Murder Mystery","Anime Adventures","Pet Simulator"
+  ],
+
+  "Discord": [
+    "Server","Channel","Role","Moderator","Admin","Bot",
+    "Webhook","Nitro","Forum","Thread","Emoji","Sticker"
+  ],
+
+  "Movies": [
+    "Avatar","Titanic","Inception","Interstellar","Joker","Batman",
+    "Superman","Iron Man","Spider-Man","Hulk","Thor","Deadpool"
+  ],
+
+  "YouTube": [
+    "Shorts","Livestream","Subscriber","Thumbnail","Algorithm","Monetization",
+    "Creator","Channel","Playlist","Views","Watchtime","Premiere"
+  ],
+
+  "School": [
+    "Teacher","Student","Principal","Classroom","Exam","Homework",
+    "Notebook","Project","Library","Uniform","Blackboard","Laboratory"
+  ],
+
+  "Jobs": [
+    "Doctor","Engineer","Teacher","Police","Lawyer","Pilot",
+    "Farmer","Chef","Scientist","Actor","Director","YouTuber"
+  ],
+
+  "Weather": [
+    "Rain","Storm","Thunder","Lightning","Cloud","Fog",
+    "Snow","Sunshine","Wind","Cyclone","Hurricane","Tornado"
+  ],
+
+  "Space": [
+    "Earth","Mars","Jupiter","Saturn","Moon","Sun",
+    "Asteroid","Comet","Black Hole","Galaxy","Rocket","Satellite"
+  ]
+}
