@@ -300,7 +300,25 @@ class Game(commands.Cog):
         await ctx.send(
             "🔒 Voice Channel Locked."
         )
+        # Mute Everyone
 
+        for member in vc.members:
+
+            if not member.bot:
+
+                try:
+
+                    await member.edit(
+                        mute=True
+                    )
+
+                except Exception:
+                    pass
+
+        await ctx.send(
+            "🔇 Everyone Has Been Muted."
+        )
+        
         await ctx.send(
             "📩 Roles Sent Successfully!"
         )
