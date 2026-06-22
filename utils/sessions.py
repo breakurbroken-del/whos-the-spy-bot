@@ -20,7 +20,7 @@ class GameSession:
 
         self.players = []
 
-        self.ready_players = set()
+        self.ready_players = []
 
         self.eliminated_players = []
 
