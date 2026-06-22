@@ -2,6 +2,7 @@ from views.ready_view import ReadyView
 
 from discord.ext import commands
 import discord
+import asyncio
 
 from config import (
     MIN_PLAYERS,
@@ -321,6 +322,61 @@ class Game(commands.Cog):
         
         await ctx.send(
             "📩 Roles Sent Successfully!"
+        )
+        # Speaking Queue
+
+        await ctx.send(
+            "🎤 Speaking Phase Started."
+        )
+
+        session.speaking_queue = [
+            player_id
+            for player_id in session.players
+        ]
+
+        for player_id in session.speaking_queue:
+
+            if player_id in session.eliminated_players:
+                continue
+
+            member = ctx.guild.get_member(
+                player_id
+            )
+
+            if not member:
+                continue
+
+            await ctx.send(
+                f"🎤 {member.mention} Your Turn\n"
+                "You Have 15 Seconds."
+            )
+
+            try:
+
+                await member.edit(
+                    mute=False
+                )
+
+            except Exception:
+                pass
+
+            await asyncio.sleep(15)
+
+            try:
+
+                await member.edit(
+                    mute=True
+                )
+
+            except Exception:
+                pass
+
+            await ctx.send(
+                f"🔇 {member.mention} Finished."
+            )
+
+        await ctx.send(
+            "🗳️ Voting Phase Coming Soon."
         )
         
 async def setup(bot):
