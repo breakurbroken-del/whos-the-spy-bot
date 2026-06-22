@@ -28,7 +28,6 @@ class Game(commands.Cog):
     async def start_game(self, ctx):
 
         # Must be in VC
-
         if not ctx.author.voice:
 
             embed = discord.Embed(
@@ -42,7 +41,6 @@ class Game(commands.Cog):
         vc = ctx.author.voice.channel
 
         # Active game check
-
         if session_exists(vc.id):
 
             embed = discord.Embed(
@@ -54,7 +52,6 @@ class Game(commands.Cog):
             return await ctx.send(embed=embed)
 
         # Global limit
-
         if len(active_games) >= MAX_ACTIVE_GAMES:
 
             embed = discord.Embed(
@@ -71,7 +68,6 @@ class Game(commands.Cog):
         ]
 
         # Player count
-
         if len(members) < MIN_PLAYERS:
 
             embed = discord.Embed(
@@ -93,7 +89,6 @@ class Game(commands.Cog):
             return await ctx.send(embed=embed)
 
         # Coin check
-
         low_coin_players = []
 
         for member in members:
@@ -127,7 +122,6 @@ class Game(commands.Cog):
             )
 
         # Create Session
-
         session = create_session(
             guild_id=ctx.guild.id,
             vc_id=vc.id,
@@ -141,7 +135,6 @@ class Game(commands.Cog):
         ]
 
         # Lobby Embed
-
         embed = discord.Embed(
             title="🎭 Who's The Spy",
             description="Lobby Created",
@@ -167,10 +160,29 @@ class Game(commands.Cog):
         )
 
         embed.set_footer(
-            text="Ready System Coming Next"
+            text="Click Ready To Continue"
         )
 
-        await ctx.send(embed=embed)
+        view = ReadyView(session)
+
+        await ctx.send(
+            embed=embed,
+            view=view
+        )
+
+        await view.wait()
+
+        if len(session.ready_players) != len(session.players):
+
+            await ctx.send(
+                "❌ Lobby Cancelled."
+            )
+
+            return
+
+        await ctx.send(
+            "✅ Everyone Is Ready!"
+        )
 
 
 async def setup(bot):
