@@ -401,8 +401,92 @@ class Game(commands.Cog):
                 f"🔇 {member.mention} Finished."
             )
 
+        session.votes = {}
+        session.voted_players = []
+
+        vote_embed = discord.Embed(
+            title="🗳️ Voting Phase",
+            description="You Have 15 Seconds To Vote",
+            color=discord.Color.red()
+        )
+
+        vote_embed.add_field(
+            name="Players",
+            value="\n".join(
+                [
+                    f"{i+1}. <@{pid}>"
+                    for i, pid in enumerate(
+                        session.speaking_queue
+                    )
+                ]
+            ),
+            inline=False
+        )
+
+        vote_view = VoteView(
+            session
+        )
+
         await ctx.send(
-            "🗳️ Voting Phase Coming Soon."
+            embed=vote_embed,
+            view=vote_view
+        )
+
+        await asyncio.sleep(15)
+
+        vote_view.stop()
+
+        await ctx.send(
+            "🗳️ Voting Ended."
+        )
+        if not session.votes:
+
+            await ctx.send(
+                "❌ No Votes Received."
+            )
+
+            return
+
+        eliminated_id = max(
+            session.votes,
+            key=session.votes.get
+        )
+
+        session.eliminated_players.append(
+            eliminated_id
+        )
+
+        await ctx.send(
+            f"☠️ <@{eliminated_id}> Has Been Eliminated!"
+        )
+        if eliminated_id == session.spy_id:
+
+            await ctx.send(
+                "🏡 Villagers Win!"
+            )
+
+            return
+
+        if eliminated_id in session.speaking_queue:
+
+            session.speaking_queue.remove(
+                eliminated_id
+            )
+
+        remaining_players = (
+            len(session.speaking_queue)
+        )
+
+        if remaining_players <= 2:
+
+            await ctx.send(
+                "🕵️ Spy Wins!"
+            )
+
+            return
+
+        await ctx.send(
+            "🔄 Round 2 Coming Soon..."
         )
         
 async def setup(bot):
