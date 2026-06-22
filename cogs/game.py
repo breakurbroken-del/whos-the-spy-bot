@@ -1,4 +1,5 @@
 from views.ready_view import ReadyView
+from views.vote_view import VoteView
 
 from discord.ext import commands
 import discord
