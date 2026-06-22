@@ -68,3 +68,143 @@ class VoteView(discord.ui.View):
             "✅ Vote Submitted",
             ephemeral=True
         )
+
+    @discord.ui.button(
+        label="1️⃣",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_1(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            0
+        )
+
+    @discord.ui.button(
+        label="2️⃣",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_2(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            1
+        )
+
+    @discord.ui.button(
+        label="3️⃣",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_3(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            2
+        )
+
+    @discord.ui.button(
+        label="4️⃣",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_4(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            3
+        )
+
+    @discord.ui.button(
+        label="5️⃣",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_5(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            4
+        )
+
+    @discord.ui.button(
+        label="6️⃣",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_6(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            5
+        )
+
+    @discord.ui.button(
+        label="7️⃣",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_7(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            6
+        )
+
+    @discord.ui.button(
+        label="8️⃣",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_8(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            7
+        )
+
+    @discord.ui.button(
+        label="9️⃣",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_9(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            8
+        )
+
+    @discord.ui.button(
+        label="🔟",
+        style=discord.ButtonStyle.primary
+    )
+    async def vote_10(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+        await self.vote_player(
+            interaction,
+            9
+        )
