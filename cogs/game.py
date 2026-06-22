@@ -13,7 +13,8 @@ from config import (
 from utils.sessions import (
     active_games,
     create_session,
-    session_exists
+    session_exists,
+    remove_session
 )
 
 from utils.database import get_coins
