@@ -325,14 +325,38 @@ class Game(commands.Cog):
         )
         # Speaking Queue
 
-        await ctx.send(
-            "🎤 Speaking Phase Started."
-        )
-
         session.speaking_queue = [
             player_id
             for player_id in session.players
         ]
+
+        embed = discord.Embed(
+            title="🎤 Round 1",
+            description="Speaking Phase Started",
+            color=discord.Color.gold()
+        )
+
+        embed.add_field(
+            name="Players",
+            value=str(
+                len(session.speaking_queue)
+            ),
+            inline=False
+        )
+
+        embed.add_field(
+            name="Time Per Player",
+            value="15 Seconds",
+            inline=False
+        )
+
+        embed.set_footer(
+            text=vc.name
+        )
+
+        await ctx.send(
+            embed=embed
+        )
 
         for player_id in session.speaking_queue:
 
