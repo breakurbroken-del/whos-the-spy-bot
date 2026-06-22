@@ -18,7 +18,9 @@ from utils.sessions import (
 )
 
 from utils.database import get_coins
+import random
 
+from utils.words import get_random_words
 
 class Game(commands.Cog):
 
@@ -187,6 +189,91 @@ class Game(commands.Cog):
 
         await ctx.send(
             "✅ Everyone Is Ready!"
+        )
+
+        # Select Spy
+
+        session.spy_id = random.choice(
+            session.players
+        )
+
+        # Generate Words
+
+        word_data = get_random_words()
+
+        session.villager_word = (
+            word_data["villager_word"]
+        )
+
+        session.spy_word = (
+            word_data["spy_word"]
+        )
+
+        failed_dm = []
+
+        for player_id in session.players:
+
+            member = ctx.guild.get_member(
+                player_id
+            )
+
+            try:
+
+                if player_id == session.spy_id:
+
+                    embed = discord.Embed(
+                        title="🕵️ Spy",
+                        color=discord.Color.red()
+                    )
+
+                    embed.add_field(
+                        name="Your Word",
+                        value=session.spy_word,
+                        inline=False
+                    )
+
+                else:
+
+                    embed = discord.Embed(
+                        title="🏡 Villager",
+                        color=discord.Color.green()
+                    )
+
+                    embed.add_field(
+                        name="Your Word",
+                        value=session.villager_word,
+                        inline=False
+                    )
+
+                embed.add_field(
+                    name="Voice Channel",
+                    value=vc.name,
+                    inline=False
+                )
+
+                await member.send(
+                    embed=embed
+                )
+
+            except Exception:
+
+                failed_dm.append(
+                    member.mention
+                )
+
+        if failed_dm:
+
+            remove_session(vc.id)
+
+            await ctx.send(
+                "❌ DM Failed For:\n"
+                + "\n".join(failed_dm)
+            )
+
+            return
+
+        await ctx.send(
+            "📩 Roles Sent Successfully!"
         )
 
 
