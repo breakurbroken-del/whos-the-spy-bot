@@ -36,6 +36,8 @@ class GameSession:
 
         self.votes = {}
 
+        self.voted_players = []
+
         # Speaking
 
         self.speaking_queue = []
