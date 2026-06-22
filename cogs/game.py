@@ -174,6 +174,10 @@ class Game(commands.Cog):
 
         if len(session.ready_players) != len(session.players):
 
+            from utils.sessions import remove_session
+
+            remove_session(vc.id)
+
             await ctx.send(
                 "❌ Lobby Cancelled."
             )
