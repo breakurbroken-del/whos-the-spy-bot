@@ -32,6 +32,45 @@ class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    async def cleanup_game(
+        self,
+        ctx,
+        session,
+        vc
+    ):
+
+        try:
+
+            everyone_role = (
+                ctx.guild.default_role
+            )
+
+            await vc.set_permissions(
+                everyone_role,
+                connect=None
+            )
+
+        except Exception:
+            pass
+
+        for member in vc.members:
+
+            if member.bot:
+                continue
+
+            try:
+
+                await member.edit(
+                    mute=False
+                )
+
+            except Exception:
+                pass
+
+        remove_session(
+            vc.id
+        )
+
     @commands.command(name="start")
     async def start_game(self, ctx):
 
@@ -465,6 +504,40 @@ class Game(commands.Cog):
                 "🏡 Villagers Win!"
             )
 
+            await self.cleanup_game(
+                ctx,
+                session,
+                vc
+            )
+
+            return
+
+        if eliminated_id in session.speaking_queue:
+
+            session.speaking_queue.remove(
+                eliminated_id
+            )
+
+        remaining_players = (
+            len(session.speaking_queue)
+        )
+
+        await ctx.send(
+            f"☠️ <@{eliminated_id}> Has Been Eliminated!"
+        )
+
+        if eliminated_id == session.spy_id:
+
+            await ctx.send(
+                "🏡 Villagers Win!"
+            )
+
+            await self.cleanup_game(
+                ctx,
+                session,
+                vc
+            )
+
             return
 
         if eliminated_id in session.speaking_queue:
@@ -481,6 +554,12 @@ class Game(commands.Cog):
 
             await ctx.send(
                 "🕵️ Spy Wins!"
+            )
+
+            await self.cleanup_game(
+                ctx,
+                session,
+                vc
             )
 
             return
