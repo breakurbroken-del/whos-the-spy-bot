@@ -17,7 +17,10 @@ from utils.sessions import (
     remove_session
 )
 
-from utils.database import get_coins
+from utils.database import (
+    get_coins,
+    remove_coins
+)
 import random
 
 from utils.words import get_random_words
@@ -272,9 +275,35 @@ class Game(commands.Cog):
 
             return
 
-        await ctx.send(
-            "📩 Roles Sent Successfully!"
-        )
+# Deduct Entry Fee
+
+for player_id in session.players:
+
+    await remove_coins(
+        player_id,
+        ENTRY_COST
+    )
+
+await ctx.send(
+    f"💰 {ENTRY_COST} Coins Deducted From All Players."
+)
+
+# Lock Voice Channel
+
+everyone_role = ctx.guild.default_role
+
+await vc.set_permissions(
+    everyone_role,
+    connect=False
+)
+
+await ctx.send(
+    "🔒 Voice Channel Locked."
+)
+
+await ctx.send(
+    "📩 Roles Sent Successfully!"
+)
 
 
 async def setup(bot):
