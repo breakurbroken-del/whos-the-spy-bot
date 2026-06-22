@@ -301,6 +301,7 @@ class Game(commands.Cog):
         await ctx.send(
             "🔒 Voice Channel Locked."
         )
+        
         # Mute Everyone
 
         for member in vc.members:
